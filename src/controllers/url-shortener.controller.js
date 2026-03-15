@@ -1,5 +1,5 @@
 const httpStatus = require("http-status");
-const { urlShortenerService } = require("../services/index");
+const urlShortenerService = require("../services/url-shortener.services");
 
 const openCompression = async (req, res) => {
   try {

@@ -1,26 +1,24 @@
 {
-  "name": "short.ly",
-  "version": "1.0.1",
-  "description": "URL shortener and much more",
+  "name": "almonds-shortly",
+  "version": "1.0.0",
+  "description": "URL shortener",
   "main": "index.js",
   "scripts": {
     "start": "node ./src/index.js",
     "dev": "nodemon index.js --delay 2"
   },
-  "author": "Kushagra",
+  "author": "Kushagra Ranjan",
   "license": "MIT",
   "dependencies": {
     "axios": "^1.10.0",
     "compression": "^1.8.0",
     "cors": "^2.8.5",
-    "crypto": "^1.0.1",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-http-context": "^2.0.1",
     "express-rate-limit": "^7.5.0",
     "helmet": "^8.1.0",
     "http-status": "^2.1.0",
-    "moment": "^2.30.1",
     "path": "^0.12.7",
     "tail": "^2.2.6",
     "uuid": "^11.1.0"

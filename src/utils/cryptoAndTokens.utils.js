@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 const httpStatus = require("http-status");
-const { ErrorInstance } = require("./errorInstance.utils");
+const { AppError } = require("./index");
 
 const getRandomHashCode = (length) => {
   const bytes = parseInt(Math.floor(length * 3 / 4));
@@ -25,14 +25,14 @@ const validateLongUrl = (longUrl) => {
   const allowedProtocols = ["http:", "https:"];
   const parsed = new URL(longUrl);
   if (!allowedProtocols.includes(parsed.protocol)) {
-    throw new ErrorInstance(
+    throw new AppError(
       httpStatus.status.BAD_REQUEST,
       "Redirection blocked",
     );
   }
 
   if (parsed.hostname === process.env.SHORTLY_BASE_URL) {
-    throw new ErrorInstance(
+    throw new AppError(
       httpStatus.status.CONFLICT,
       "Self redirection blocked",
     );

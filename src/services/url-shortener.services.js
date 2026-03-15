@@ -1,5 +1,5 @@
 const httpStatus = require("http-status");
-const { ErrorInstance, hashUrl, getShortCode, getRandomHashCode, validateLongUrl } = require("../utils");
+const { AppError, hashUrl, getShortCode, getRandomHashCode, validateLongUrl } = require("../utils");
 const { redisClient, mysqlClient } = require("../../../almonds-static/configs");
 const { v4: uuidv4 } = require('uuid');
 
@@ -7,7 +7,7 @@ const openCompression = async (body) => {
   try {
     console.log("inside openCompression method, request body: ", body);
     if (!body || !body.longUrl) {
-      throw new ErrorInstance(httpStatus.status.BAD_REQUEST, "Invalid Request");
+      throw new AppError(httpStatus.status.BAD_REQUEST, "Invalid Request");
     }
 
     const { longUrl, customDomain } = body;
@@ -48,7 +48,7 @@ const openCompression = async (body) => {
             }
 
             if(existingLongUrl && existingLongUrl.toLowerCase() === longUrl.toLowerCase()) {
-                throw new ErrorInstance(httpStatus.status.CONFLICT, "URL already exists in database");
+                throw new AppError(httpStatus.status.CONFLICT, "URL already exists in database");
             }
             
             const resultSet = await mysqlClient.execute(
@@ -71,12 +71,12 @@ const openCompression = async (body) => {
         } catch (error) {
             console.log("error occured: ", error);
             if (error.code === 'ER_DUP_ENTRY') continue;
-            else throw new ErrorInstance(error.statusCode ?? httpStatus.status.INTERNAL_SERVER_ERROR, error.message ?? "Something went wrong");
+            else throw new AppError(error.statusCode ?? httpStatus.status.INTERNAL_SERVER_ERROR, error.message ?? "Something went wrong");
         }
     }
 
     if (attempt === MAX_ATTEMPTS) {
-        throw new ErrorInstance(httpStatus.status.INTERNAL_SERVER_ERROR, "Too many collisions. Please try again.");
+        throw new AppError(httpStatus.status.INTERNAL_SERVER_ERROR, "Too many collisions. Please try again.");
     }
 
     return {
@@ -86,7 +86,7 @@ const openCompression = async (body) => {
 
   } catch (error) {
     console.error("error occurred in openCompression: ", error);
-    throw new ErrorInstance(error.statusCode ?? httpStatus.status.INTERNAL_SERVER_ERROR, error.message ?? "Something went wrong");
+    throw new AppError(error.statusCode ?? httpStatus.status.INTERNAL_SERVER_ERROR, error.message ?? "Something went wrong");
   }
 };
 
@@ -95,7 +95,7 @@ const redirectService = async(params) => {
         const shortCode  = params[0];
         console.log("inside redirectService method, request params: ", { shortCode });
         if(!shortCode || (typeof shortCode != 'string') || shortCode.length != process.env.SHORT_CODE_LENGTH) {
-            throw new ErrorInstance(httpStatus.status.BAD_REQUEST, "Invalid Request");
+            throw new AppError(httpStatus.status.BAD_REQUEST, "Invalid Request");
         }
 
         const domain = await redisClient.get(`shortCode:${shortCode}::domain`);
@@ -124,7 +124,7 @@ const redirectService = async(params) => {
             }
         }
 
-        if(!longUrl) throw new ErrorInstance(httpStatus.status.NOT_ACCEPTABLE, "Requested URL no longer exist");
+        if(!longUrl) throw new AppError(httpStatus.status.NOT_ACCEPTABLE, "Requested URL no longer exist");
         validateLongUrl(longUrl);
 
         return {
@@ -134,7 +134,7 @@ const redirectService = async(params) => {
         
     } catch (error) {
         console.log("error occured in redirectService: ", error);
-        throw new ErrorInstance(error.statusCode ?? httpStatus.status.INTERNAL_SERVER_ERROR, error.message ?? "Something went wrong, please try again");
+        throw new AppError(error.statusCode ?? httpStatus.status.INTERNAL_SERVER_ERROR, error.message ?? "Something went wrong, please try again");
     }
 };
 
