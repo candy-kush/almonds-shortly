@@ -1,7 +1,8 @@
-const express = require("express");
-const urlShortenerController = require('../../controllers/url-shortener.controller');
+import express from "express";
+import { openCompression } from '../../controllers/url-shortener.controller';
+
 const router = express.Router();
 
-router.route("/compress").post(urlShortenerController.openCompression);
+router.route("/compress").post(openCompression);
 
-module.exports = router;
+export default router;

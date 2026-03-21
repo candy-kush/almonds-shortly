@@ -1,2 +1,2 @@
-module.exports.requestRateLimiter = require('./auth.middleware').requestRateLimiter;
-module.exports.analyticsMiddleware = require('./analytics.middleware').analyticsMiddleware;
+export { requestRateLimiter } from './auth.middleware';
+export { analyticsMiddleware } from './analytics.middleware';

@@ -1,4 +1,4 @@
-const { analyticsQueue } = require("../../../almonds-static/configs");
+import { analyticsQueue } from "../../../almonds-static/configs";
 
 const analyticsMiddleware = (req, res, next) => {
   res.on("finish", () => {
@@ -19,6 +19,6 @@ const analyticsMiddleware = (req, res, next) => {
   next();
 };
 
-module.exports = {
+export {
   analyticsMiddleware,
 };

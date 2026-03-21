@@ -1,5 +1,5 @@
-const Tail = require("tail").Tail;
-const { analyticsQueue } = require("../../../almonds-static/configs");
+import { Tail } from "tail";
+import { analyticsQueue } from "../../../almonds-static/configs";
 
 const LOG_FILE = process.env.NGINX_LOG_FILE;
 

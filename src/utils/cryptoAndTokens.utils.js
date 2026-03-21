@@ -1,6 +1,6 @@
-const crypto = require("crypto");
-const httpStatus = require("http-status");
-const { AppError } = require("./index");
+import httpStatus from "http-status";
+import { AppError } from "./index";
+import crypto from 'crypto';
 
 const getRandomHashCode = (length) => {
   const bytes = parseInt(Math.floor(length * 3 / 4));
@@ -39,7 +39,7 @@ const validateLongUrl = (longUrl) => {
   }
 };
 
-module.exports = {
+export {
   getRandomHashCode,
   getShortCode,
   hashUrl,

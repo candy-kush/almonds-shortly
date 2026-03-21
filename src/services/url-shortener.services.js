@@ -1,7 +1,7 @@
-const httpStatus = require("http-status");
-const { AppError, hashUrl, getShortCode, getRandomHashCode, validateLongUrl } = require("../utils");
-const { redisClient, mysqlClient } = require("../../../almonds-static/configs");
-const { v4: uuidv4 } = require('uuid');
+import httpStatus from "http-status";
+import { AppError, hashUrl, getShortCode, getRandomHashCode, validateLongUrl } from "../utils";
+import { redisClient, mysqlClient } from "../../../almonds-static/configs";
+import crypto from 'crypto';
 
 const openCompression = async (body) => {
   try {
@@ -33,7 +33,7 @@ const openCompression = async (body) => {
         console.log("shortCode: ", shortCode);
         let existingLongUrl = await redisClient.get(`shortCode:${shortCode}::domain:${domain}`);
         try {
-            const id = uuidv4();
+            const id = crypto.randomUUID();
             console.log("url Id: ", id);
 
             if(!existingLongUrl) {
@@ -138,7 +138,7 @@ const redirectService = async(params) => {
     }
 };
 
-module.exports = {
+export default {
     openCompression,
     redirectService,
 };

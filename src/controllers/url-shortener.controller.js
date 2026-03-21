@@ -1,5 +1,5 @@
-const httpStatus = require("http-status");
-const urlShortenerService = require("../services/url-shortener.services");
+import httpStatus from "http-status";
+import urlShortenerService from "../services/url-shortener.services";
 
 const openCompression = async (req, res) => {
   try {
@@ -24,7 +24,7 @@ const redirectController = async (req, res) => {
   }
 };
 
-module.exports = {
+export {
   openCompression,
   redirectController,
 };

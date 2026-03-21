@@ -1,5 +1,5 @@
-const express = require('express');
-const urlShortenerRoute = require('./url-shortener.routes');
+import express from 'express';
+import urlShortenerRoute from './url-shortener.routes';
 
 const router = express.Router();
 
@@ -14,4 +14,4 @@ contextRoutes.forEach((route) => {
   router.use(route.path, route.route);
 });
 
-module.exports = router;
+export default router;
