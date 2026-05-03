@@ -1,5 +1,5 @@
 import httpStatus from "http-status";
-import { AppError } from "./index";
+import { AppError } from "./index.js";
 import crypto from 'crypto';
 
 const getRandomHashCode = (length) => {

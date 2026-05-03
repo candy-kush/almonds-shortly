@@ -1,4 +1,4 @@
-import { analyticsQueue } from "../../../almonds-static/configs";
+import { analyticsQueue } from "../../../almonds-static/configs/index.js";
 
 const analyticsMiddleware = (req, res, next) => {
   res.on("finish", () => {

@@ -1,6 +1,6 @@
 import httpStatus from "http-status";
-import { AppError, hashUrl, getShortCode, getRandomHashCode, validateLongUrl } from "../utils";
-import { redisClient, mysqlClient } from "../../../almonds-static/configs";
+import { AppError, hashUrl, getShortCode, getRandomHashCode, validateLongUrl } from "../utils/index.js";
+import { redisClient, mysqlClient } from "../../../almonds-static/configs/index.js";
 import crypto from 'crypto';
 
 const openCompression = async (body) => {

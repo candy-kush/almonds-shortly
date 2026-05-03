@@ -1,5 +1,5 @@
 import httpStatus from "http-status";
-import urlShortenerService from "../services/url-shortener.services";
+import urlShortenerService from "../services/url-shortener.services.js";
 
 const openCompression = async (req, res) => {
   try {

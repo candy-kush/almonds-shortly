@@ -1,5 +1,5 @@
 import express from 'express';
-import urlShortenerRoute from './url-shortener.routes';
+import urlShortenerRoute from './url-shortener.routes.js';
 
 const router = express.Router();
 

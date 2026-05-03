@@ -1,5 +1,5 @@
 import express from "express";
-import { openCompression } from '../../controllers/url-shortener.controller';
+import { openCompression } from '../../controllers/url-shortener.controller.js';
 
 const router = express.Router();
 

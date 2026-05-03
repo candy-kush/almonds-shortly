@@ -5,10 +5,10 @@ import compression from 'compression';
 import cors from 'cors';
 import crypto from 'crypto';
 import httpContext from 'express-http-context';
-import routes from './routes/v1/index';
-import { requestRateLimiter, analyticsMiddleware } from "./middlewares";
-import { redirectController } from "./controllers/url-shortener.controller";
-import './utils/nginxLogShipper.utils';
+import routes from './routes/v1/index.js';
+import { requestRateLimiter, analyticsMiddleware } from "./middlewares/index.js";
+import { redirectController } from "./controllers/url-shortener.controller.js";
+import './utils/nginxLogShipper.utils.js';
 
 const PORT = process.env.PORT || 3000;
 

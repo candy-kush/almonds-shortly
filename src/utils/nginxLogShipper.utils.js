@@ -1,5 +1,5 @@
 import { Tail } from "tail";
-import { analyticsQueue } from "../../../almonds-static/configs";
+import { analyticsQueue } from "../../../almonds-static/configs/index.js";
 
 const LOG_FILE = process.env.NGINX_LOG_FILE;
 

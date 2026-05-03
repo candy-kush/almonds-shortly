@@ -1,2 +1,2 @@
-export { requestRateLimiter } from './auth.middleware';
-export { analyticsMiddleware } from './analytics.middleware';
+export { requestRateLimiter } from './auth.middleware.js';
+export { analyticsMiddleware } from './analytics.middleware.js';
