@@ -1,8 +1,8 @@
 import express from "express";
-import { openCompression } from '../../controllers/url-shortener.controller.js';
+import { openCompressionController } from '../../controllers/v1/url-shortener.controller.js';
 
 const router = express.Router();
 
-router.route("/compress").post(openCompression);
+router.route("/url/compress").post(openCompressionController);
 
 export default router;
